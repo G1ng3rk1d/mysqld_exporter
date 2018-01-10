@@ -101,10 +101,12 @@ func New(dsn string, collect Collect) *Exporter {
 			Name:      "last_scrape_error",
 			Help:      "Whether the last scrape of metrics from MySQL resulted in an error (1 for error, 0 for success).",
 		}),
-		mysqldUp: prometheus.NewGauge(prometheus.GaugeOpts{
+		
+		: prometheus.NewGauge(prometheus.GaugeOpts{
 			Namespace: namespace,
 			Name:      "up",
 			Help:      "Whether the MySQL server is up.",
+			ConstLabels: map[string]string{"dsn": dsn})
 		}),
 	}
 }
